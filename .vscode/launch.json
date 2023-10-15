@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/youngseon/coding_test/c++/basic/coding-test",
+      "program": "/Users/youngseon/coding_test/c++/basic/coding-test/build/Debug/outDebug"
+    }
+  ]
+}
