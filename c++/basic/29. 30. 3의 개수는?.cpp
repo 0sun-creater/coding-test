@@ -4,3 +4,21 @@
 //자연수 N이 입력되면 1부터 N까지 숫자를 적을 때, 3의 개수가 몇 개인지 구하여 출력하는 프로그램을 작성하세요.
 //N(3<=N<=1,000,000,000)
 
+#include <iostream>
+using namespace std;
+
+int main(){
+	int n, lt=1, rt, cur, k=1, res=0;
+    cin >> n;
+	while(lt!=0){
+		lt=n/(k*10);
+		rt=n%k;
+		cur=(n/k)%10;
+		if(cur>3) res+=(lt+1)*k;
+		else if(cur==3) res+=(lt*k)+(rt+1);
+		else res+=lt*k;
+		k=k*10;
+	}
+    cout << res;
+	return 0;
+}
