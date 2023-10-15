@@ -1,6 +1,6 @@
 //1부터 n까지 m까지 배수합
 //자연수 n이 입력되면 1부터 n까지의 수 중 m의 배수합 출력
-#incllude <iostream>
+#include <iostream>
 using namespace std;
 int main() {
     int n,m, sum =0;
@@ -10,5 +10,5 @@ int main() {
             sum += i;
         }
     }
-    cout>>sum;
+    cout<<sum;
 }
