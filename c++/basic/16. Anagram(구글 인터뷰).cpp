@@ -6,9 +6,31 @@
 //아나그램 판별시 대소문자가 구분됩니다.
 
 #include <iostream>
+#include <string>
+#include <vector>
+#include <numeric>
 using namespace std;
 
 int main() {
+    //대문자 65-90 소문자 97-122
+    //-65로 배열에 첫번째 문자열은 ++ 두번째 문자열은 --
+    //sum이 0이면 YES, 아니면 NO
 
+    string input1, input2;
+    cin >> input1 >> input2;
+
+    vector<int> cnt(58);
+
+    for(int i =0; i<input1.length(); i++){
+        cnt[input1[i]-65] +=1;
+        cnt[input2[i]-65] -=1;
+    }
+
+    if (accumulate(cnt.begin(), cnt.end(),0) == 0){
+        cout << "YES";
+    }
+    else{
+        cout << "NO";
+    }
 
 }
