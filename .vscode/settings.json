@@ -64,6 +64,7 @@
     "limits": "cpp",
     "ratio": "cpp",
     "algorithm": "cpp",
-    "__locale": "cpp"
+    "__locale": "cpp",
+    "iostream": "cpp"
   }
 }
