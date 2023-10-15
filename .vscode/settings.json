@@ -59,6 +59,11 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "ostream": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "chrono": "cpp",
+    "limits": "cpp",
+    "ratio": "cpp",
+    "algorithm": "cpp",
+    "__locale": "cpp"
   }
 }
