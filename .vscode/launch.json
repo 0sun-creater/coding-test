@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/youngseon/coding_test/c++/basic/coding-test",
-      "program": "/Users/youngseon/coding_test/c++/basic/coding-test/build/Debug/outDebug"
+      "cwd": "/Users/youngseon/coding_test/c++/basic/coding-test/c++/programmers",
+      "program": "/Users/youngseon/coding_test/c++/basic/coding-test/c++/programmers/build/Debug/outDebug"
     }
   ]
 }
