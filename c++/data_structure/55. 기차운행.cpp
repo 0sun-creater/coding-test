@@ -20,7 +20,7 @@ O(out)작업 : 교차로에 들어온 가장 최근 기차를 B도시로 보낸�
 using namespace std;
 
 int main(){
-    int n,tmp;
+    int n,tmp=0;
     cin >> n;
     string result = "";
     stack<int> s;
@@ -29,18 +29,21 @@ int main(){
         cin >> tmp;
         s.push(tmp);
         result += "P";
-        cout << result;
         while(!s.empty()) {
             if(pos == s.top()){
                 s.pop();
                 result += "O";
                 pos ++;
+            }else{
+                break;
             }
         }
 
     }
     if (!s.empty()) cout << "impossible";
-    cout << result;
+    else{
+        cout << result;
+    }
     
     
 
