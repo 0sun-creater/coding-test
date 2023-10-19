@@ -17,9 +17,9 @@ void dfs(int v){
     }
     else{
         tmp[v] =1;
-        dfs(v+1);
+        dfs(v+1); //원소 사용
         tmp[v] =0;
-        dfs(v+1);
+        dfs(v+1); //원소 미사용
     }
 
 

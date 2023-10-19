@@ -32,7 +32,7 @@ void dfs(int depth, int sum){
     }
 
 }
-int mina(){
+int main(){
     int tmp;
     cin >> n;
     vec.push_back(0);
