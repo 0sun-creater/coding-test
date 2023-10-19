@@ -21,13 +21,14 @@ bool flag = false;
 void dfs(int depth, int sum){
     if (sum > (total/2)) return;
     if (flag == true) return;
-    if(depth == n+1){
+    if(depth == n+1){ //종료 지점
+        //<부분집합 합>과 나머지의 합이 같으면 YES
         if(sum==(total-sum)){
             flag = true;
         }
     }else{
-        dfs(depth+1, sum + vec[depth]);
-        dfs(depth+1, sum);
+        dfs(depth+1, sum + vec[depth]); //이번 원소를 사용한다.
+        dfs(depth+1, sum); //이번 원소를 사용하지 않는다.
     }
 
 }
