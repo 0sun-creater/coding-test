@@ -9,5 +9,5 @@
     
     
 ## Python
-- programmers : Lv.3, 이전 코테 문제  
+- programmers : Lv.3, 이전 코테 기출 문제  
 - backjoon : tony9402/baekjoon 참고
