@@ -11,22 +11,19 @@ using namespace std;
 //경로 존재안하면 impossible
 int dx[4] = {1,0,0,-1};
 int dy[4] = {0,-1,1,0};
-char ds[4] = {'d','l','r','u'};
+string ds[4] = {"d","l","r","u"}; //사전 순으로 돌기
 
 int n, m, r, c, k;
-bool flag = false;
+bool flag = false; //처음으로 조건이 충족하는 경우가 답
 string answer = "";
 string stack ="";
 
 //재방문 가능 visited x
 void DFS(int x, int y, int cur_k){
-    if(flag) {
-        //cout << "exit";
-        return;
-    }
+    if (flag) return;
+    
 	int dist =  abs(x-r) + abs(y-c);
-    if(k - cur_k < dist && (k - cur_k - dist) % 2 == 1 ) {
-        //cout << " 최단 거리가 남은 움직임수 보다 먼 경우" ;
+    if(k - cur_k < dist || (k - cur_k - dist) % 2 == 1 ) {
         return;
     }
     
