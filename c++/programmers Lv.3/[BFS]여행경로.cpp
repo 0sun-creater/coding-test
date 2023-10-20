@@ -1,49 +1,56 @@
+/*
+'알파벳 순' 과 같은 순서가 정해져 있으면 탐색을 그 순으로 하면 첫번째 나온 정답이 무조건 정답이 된다.
+dfs로 풀다가 flag를 걸어 정답을 찾았으면 그냥 리턴하면 답이 나온다. ex 미로 탈출 명령어 문제
+
+1. tickets를 알파벳 순으로 정렬
+2. dfs(출발지, 사용한 티켓 수) 함수
+  - 모든 항공권 다 사용하면 정렬했기 때문에 무조건 정답 
+  - 항공권 다 사용하지 못했는데 길이 끊긴 경우에만 백트랙킹이 일어남
+    visit = false 말고도 pop 필요
+*/
+
 #include <string>
 #include <vector>
 #include <queue>
-
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
-bool can(string w1, string w2){
-    int cnt =0;
-    for(int i =0; i<w1.length(); i++){
-        if(w1[i] != w2[i]) cnt++;
-    }
-    if (cnt ==1 ) return true;
-    return false;
-}
+int n;
+vector<vector<string>> tickets;
+vector<string> answer;
+bool visited[10001];
+bool flag =0;
+void dfs(string cur, int depth){
+	if(flag ==1) return;
+    
+    answer.push_back(cur);
 
-int solution(string begin, string target, vector<string> words) {
-    int answer = 0;
-
-    queue<pair<string,int>> q;
-    q.push(make_pair(begin,0));
+    if(depth == n) {
+	   flag =1;
+    } 
     
-    int flag =0;
-    for(auto &word : words){
-        if(word == target) flag=1;
-    }
-    if(flag ==0) return 0;
-    
-    
-    int cnt =0;
-   	
-	while(!q.empty()){
-        pair<string,int> cur = q.front();
-        q.pop();
-        
-        for(auto &word : words){         
-            if(can(cur.first, word)){
-                if(word == target) {
-                    return cur.second + 1;
-                }
-                q.push(make_pair(word, cur.second + 1));
+    for(int i =0; i< n; i++){
+		if(visited[i]) continue;
+        if(tickets[i][0] == cur){
+            visited[i] = true;
+            dfs(tickets[i][1], depth+1);
+            
+            if(flag == 0){
+                answer.pop_back();
+                visited[i] = false;
             }
         }
         
     }
     
-    
-    
+}
+
+
+vector<string> solution(vector<vector<string>> _tickets) {
+    tickets = _tickets;
+    sort(tickets.begin(), tickets.end());
+	n = tickets.size();
+    dfs("ICN", 0);
     return answer;
 }
