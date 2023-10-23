@@ -14,19 +14,23 @@ int main(){
     cin >> n;
     int *right = new int[n+1];
     int *dp = new int[n+1];
-    memset(dp, 0, sizeof(dp));
     for(int i=1; i <= n; i++){
         cin >> tmp;
         right[i] = tmp; 
+        dp[i] =0;
     }
-    dp[1] = 1;
-    int maxi =-1;
+    int result =0;
     for(int i =2; i<=n; i++){
+        int maxi =0;
+
         for(int j= i-1; j>0; j--){
             if(right[i] > right[j] && dp[j] > maxi){
-                maxi = dp[i];
+                maxi = dp[j];
             }
         }
+        dp[i] = maxi + 1;
+        if(result < dp[i]) result = dp[i];
     }
 
+    cout << result;
 }
