@@ -123,6 +123,7 @@
     "functional": "cpp",
     "iterator": "cpp",
     "utility": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "deque": "cpp"
   }
 }
