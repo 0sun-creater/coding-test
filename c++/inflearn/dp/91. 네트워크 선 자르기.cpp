@@ -24,7 +24,7 @@ int dp(int n){
     return res[n];
 }
 
-int dfs_res[101];이
+int dfs_res[101];
 int dfs(int n){
     if(dfs_res[n] > 0) return dfs_res[n]; //안하면 오래걸림 (이미 구해진것 - 메모제이션)
     if (n == 1 || n == 2) return n;

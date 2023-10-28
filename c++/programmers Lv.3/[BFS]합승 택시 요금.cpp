@@ -9,25 +9,26 @@ int solution(int n, int s, int a, int b, vector<vector<int>> fares) {
     int answer = INF;
     vector<vector<int>> minTaxiCost(n + 1, vector<int>(n + 1, INF)); // 모든 정점들간의 최단 경로를 저장할 (i, j) 2차원 dp 테이블
     
-    /* 준비 작업 : (i, j) 는 곧 "i -> 중간에 들리는 정점들 -> j" 의 최단 경로인데, 아직 중간에 뭘 들리기 전, 즉 i->j 직빵 연결된 가중치들이 있다면 기록 */
+    // (i, j) 는 곧 "i -> 중간에 들리는 정점들 -> j" 의 최단 경로
+    // 아직 중간에 뭘 들리기 전, 즉 i->j 직빵 연결된 가중치들이 있다면 기록 
     for(int i = 0; i < fares.size(); ++i){ 
         minTaxiCost[fares[i][0]][fares[i][1]] = fares[i][2];
         minTaxiCost[fares[i][1]][fares[i][0]] = fares[i][2];
     }   
 
-    /* 준비 작업 : dp[i][i] 자기 자신에서 자기 자신으로의 최단 경로는 0 으로 초기화 (대각선) */  
+    // dp[i][i] 자기 자신에서 자기 자신으로의 최단 경로는 0 으로 초기화 (대각선) 
     for(int i = 1; i <= n; ++i)
         minTaxiCost[i][i] = 0;
 
-    /* 플로이드 알고리즘 핵심  */
-    for(int k = 1; k <= n; ++k) // ⭐k 를 거쳐갈 때⭐
+    for(int k = 1; k <= n; ++k) // k 를 거쳐갈 때
         for(int i = 1; i <= n; ++i) // (i, j) : i->j 최단 경로
             for(int j = 1; j <= n; ++j) 
-                if (minTaxiCost[i][j] > minTaxiCost[i][k] + minTaxiCost[k][j]) // i 에서 j 로 갈 때 k 를 거쳐가는게 더 좋은 최단 경로가 된다면 업데이트
+                // i 에서 j 로 갈 때 k 를 거쳐가는게 더 좋은 최단 경로가 된다면 업데이트
+                if (minTaxiCost[i][j] > minTaxiCost[i][k] + minTaxiCost[k][j]) 
                     minTaxiCost[i][j] = minTaxiCost[i][k] + minTaxiCost[k][j];
 
     // 위까지만 완료하면 minTaxiCost 테이블에 모든 (i, j) 정점 쌍의 i->j 최단 경로가 저장되게 된다.
-    // 답 도출! 모든 정점(i)에 대하여 dp[s][i] + dp[i][a] + dp[i][b] 가 가장 최소가 될 때의 비용
+    // 모든 정점(i)에 대하여 dp[s][i] + dp[i][a] + dp[i][b] 가 가장 최소가 될 때의 비용
     for(int i = 1; i <= n; ++i)
         if (answer > minTaxiCost[s][i] + minTaxiCost[i][a] + minTaxiCost[i][b])
             answer = minTaxiCost[s][i] + minTaxiCost[i][a] + minTaxiCost[i][b];
