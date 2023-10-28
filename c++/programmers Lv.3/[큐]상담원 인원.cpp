@@ -27,7 +27,7 @@ void backtracking(int remain, int idx, vector<int> order){
     }
     
     for(int i = idx; i < order.size(); i++){
-        order[i]++;
+        order[i]++; 
         backtracking(remain-1,i,order);
         order[i]--;
     }
@@ -52,7 +52,7 @@ int solution(int k, int n, vector<vector<int>> reqs) {
         int result =0; // 대기 시간의 합
 
         for(int i = 1; i < order.size(); i++){
-            // 각 경우의 수에 맞춰 각 우선순위큐에 담음
+            // 유형 갯수 대로 push 첫 시작은 0
             for(int j = 0; j < order[i]; j++) pq[i].push(0);
         }
 
@@ -67,18 +67,18 @@ int solution(int k, int n, vector<vector<int>> reqs) {
 
             // 멘토의 시간 > 요청 시각
             if(picked > arrive){
-                result += picked-arrive;
-                pq[idx].push(picked+time);
+                result += picked-arrive; //대기시간 쌓임
+                pq[idx].push(picked+time); //그다음시간은 picked+상담시간
             }
 
-            // 멘토의 시간 < 요청 시각
-            else if(picked < arrive) pq[idx].push(arrive+time);
-
-            // 멘토의 시간 == 요청 시각
-            else pq[idx].push(picked+time);
+            // 멘토의 시간 <= 요청 시각
+            else if(picked <= arrive) pq[idx].push(arrive+time);
+			//바로 넣을 수 있음 그 다음 시간은 요청시각+상담시간;
+            
         }
-
-        answer = min(answer, result);
+		//한 번에 조합에 대해서 result에 대기시간이 쌓임
+        //그 중 최소값이 정답
+        answer = min(answer, result); 
     }
     return answer;
 }
